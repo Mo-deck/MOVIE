@@ -26,7 +26,17 @@ const faqs = [
     accordionItem.classList.add('accordian-item')
     accordionItem.innerHTML = `
     <h3 class="accordian-question">${faq.question}</h3>
-    <p class="accordian-answer" >${faq.answer}</p>
+    <p class="accordian-content" style="display: none" >${faq.answer}</p>
     `;
+    
+    const accordionConten = accordionItem.querySelector(".accordion-question")
+    accordionConten.addEventListener("click", ()=>{
+     // mid mid ayu u furayaa!
+     const accordionsContents = document.querySelectorAll('.accordion-content') 
+     accordionsContents.forEach(accordion =>{
+         accordion.style.display = "none"
+     })
+     accordionItem.querySelector('.accordion-content').style.display = "block"
+    })
     accordion.appendChild(accordionItem)
   })
