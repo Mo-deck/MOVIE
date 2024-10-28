@@ -67,35 +67,40 @@
       flex-direction: row-reverse;
   }
 
-  .faq{
+.faq{
     padding: 40px 20px;
 }
+
 .faq-title{
     text-align: center;
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin: 20px;
 }
-.accordian{
+
+.accordion{
     max-width: 600px;
     margin: 0 auto;
     text-align: left;
 }
+
 .accordion-item{
-    background: #333;
-    padding: 20px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+background: #333;
+padding: 20px;
+margin-bottom: 10px;
+border-radius: 5px;
+cursor: pointer;
 }
+
 .accordion-item h3{
     margin: 0;
     font-size: 1.5rem;
 }
+
 .accordion-content{
     margin-top: 10px;
     font-size: 1rem;
     color: #bbb;
 }
-
 /* Footer Styles  */
 footer {
     margin-top: 5%;

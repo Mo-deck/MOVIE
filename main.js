@@ -23,12 +23,12 @@ const faqs = [
   const accordion = document.querySelector('.accordion')
   faqs.map( (faq) => {
     const accordionItem = document.createElement('div')
-    accordionItem.classList.add('accordian-item')
+    accordionItem.classList.add('accordion-item')
     accordionItem.innerHTML = `
-    <h3 class="accordian-question">${faq.question}</h3>
-    <p class="accordian-content" style="display: none" >${faq.answer}</p>
+    <h3 class="accordion-question">${faq.question}</h3>
+    <p class="accordion-content" style="display: none" >${faq.answer}</p>
     `;
-    
+
     const accordionConten = accordionItem.querySelector(".accordion-question")
     accordionConten.addEventListener("click", ()=>{
      // mid mid ayu u furayaa!
@@ -38,5 +38,6 @@ const faqs = [
      })
      accordionItem.querySelector('.accordion-content').style.display = "block"
     })
+
     accordion.appendChild(accordionItem)
   })
