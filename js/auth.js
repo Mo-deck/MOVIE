@@ -7,13 +7,31 @@ const Email = document.querySelector("#Email")
 const Password = document.querySelector("#Password")
 const ConfirmPassword = document.querySelector("#confirmPassword")
 
-switchForm.addEventListener("click", ()=>{
-    authButton.textContent ='Sign up'
-    formTitle.textContent = 'Sign up'
-    username.style.display = "block"
-    confirmPassword.style.display = "block"
-    authSwitch.innerHTML = `
-    Already have an account? <a href="#"
-    id="switchForm">Sign in </a>
-    `
+let signIn = true
+
+document.body.addEventListener("click", (e)=>{
+    if(e.target.id != "switchForm")
+     return;
+     signIn = !signIn
+    if(!signIn){
+
+        authButton.textContent ='Sign up'
+        formTitle.textContent = 'Sign up'
+        username.style.display = "block"
+        confirmPassword.style.display = "block"
+        authSwitch.innerHTML = `
+        Already have an account? <a href="#"
+        id="switchForm">Sign in </a>`
+    }else{
+
+        authButton.textContent ='Sign in'
+        formTitle.textContent = 'Sign in'
+        username.style.display = "none"
+        confirmPassword.style.display = "none"
+        username.value =''
+        confirmPassword.value = ''
+        authSwitch.innerHTML = `
+        Already have an account? <a href="#"
+        id="switchForm">Sign in </a>`
+    }
 })
