@@ -3,9 +3,9 @@ const authButton = document.querySelector("#authButton")
 const switchForm = document.querySelector("#switchForm")
 const formTitle = document.querySelector("#form-title")
 const username = document.querySelector("#username")
-const Email = document.querySelector("#Email")
-const Password = document.querySelector("#Password")
-const ConfirmPassword = document.querySelector("#confirmPassword")
+const email = document.querySelector("#email")
+const password = document.querySelector("#password")
+const confirmPassword = document.querySelector("#confirmPassword")
 
 let signIn = true
 
@@ -35,3 +35,24 @@ document.body.addEventListener("click", (e)=>{
         id="switchForm">Sign in </a>`
     }
 })
+
+
+const authForm = document.querySelector("#authForm");
+
+authForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const user = {
+    username: signIn ? undefined :
+    username.value,
+    email: email.value,
+    password: password.value
+  };
+
+ 
+ localStorage.setItem('users', JSON.stringify(user))
+
+  if (confirmPassword.value !== password.value) {
+    alert("Password did not match!");
+  }
+
+});
