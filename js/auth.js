@@ -7,12 +7,48 @@ const email = document.querySelector("#email")
 const password = document.querySelector("#password")
 const confirmPassword = document.querySelector("#confirmPassword")
 
-let signIn = true
+let signIn = true;
 
 document.body.addEventListener("click", (e)=>{
     if(e.target.id != "switchForm")
      return;
-     signIn = !signIn
+    switchAuthForm()
+})
+const authForm = document.querySelector("#authForm");
+
+authForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const user = {
+    username: signIn ? undefined : username.value,
+    email: email.value,
+    password: password.value
+  };
+
+  if(signIn){
+
+  }else{
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    // codekan waa users soo laalabanayo sida lo xakamenayo
+    const existingUser = users.find(
+        (user)=> user.username === username.value  && user.email === email.value
+    );
+    if(existingUser){
+      alert(`User ${existingUser.username} already exists`)
+        return
+    }
+    users.push(user)
+    localStorage.setItem('users', JSON.stringify(users))
+    alert("Registered Successfully!")
+    switchAuthForm();
+  }
+  if (confirmPassword.value !== password.value) {
+    alert("Password did not match!");
+  }
+
+});
+
+function switchAuthForm(){
+    signIn = !signIn
     if(!signIn){
 
         authButton.textContent ='Sign up'
@@ -28,31 +64,12 @@ document.body.addEventListener("click", (e)=>{
         formTitle.textContent = 'Sign in'
         username.style.display = "none"
         confirmPassword.style.display = "none"
-        username.value =''
-        confirmPassword.value = ''
+        username.value ="";
+        confirmPassword.value = "";
+        email.value = '';
+        password.value = '';
         authSwitch.innerHTML = `
         Already have an account? <a href="#"
         id="switchForm">Sign in </a>`
     }
-})
-
-
-const authForm = document.querySelector("#authForm");
-
-authForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const user = {
-    username: signIn ? undefined :
-    username.value,
-    email: email.value,
-    password: password.value
-  };
-
- 
- localStorage.setItem('users', JSON.stringify(user))
-
-  if (confirmPassword.value !== password.value) {
-    alert("Password did not match!");
-  }
-
-});
+}
