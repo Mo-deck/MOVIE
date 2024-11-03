@@ -27,11 +27,12 @@ authForm.addEventListener("submit", (e) => {
   if(signIn){
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const existingUser = users.find(
-        (user)=> user.email === email.value  && user.password === password.value
+        (user)=> user.email === email.value  && user.password === password.value 
     );
 
     if(existingUser){
         localStorage.setItem("onlineUser", JSON.stringify(existingUser))
+        window.location.href = '../html/movies.html'
     }else{
         alert("Invalid credentials")
         return;

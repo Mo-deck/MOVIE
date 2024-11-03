@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Homepage</title>
+    <link rel="stylesheet" href="../css/movies.css">
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="../js/movies.js" defer></script>
+  </head>
+  <body>
+  
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <nav>
+          <a href="my-list.html">My List</a>
+          <h4 id="user">Mohamed Ahmed</h4>
+          <button id="logOut">Log out</button>
+        </nav>
+        <div class="hero-image">
+          <img id="hero-img" src="" alt="Featured Movie" />
+          <div class="hero-content">
+            <h1 id="hero-title" class="hero-title"></h1>
+            <p id="hero-description" class="hero-description"></p>
+            <div class="hero-buttons">
+              <button class="btn-play">
+                <span class="play-icon">&#9658;</span> Play
+              </button>
+              <button class="btn-info">More Info</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container">
+        <section class="movie-section">
+          <h2 class="section-title">Now Playing</h2>
+          <div class="movie-row">
+            <button
+              class="nav-button left"
+              onclick="scrollLeftSection('now-playing')"
+            >
+              &#8249;
+            </button>
+            <div class="movie-grid" id="now-playing"></div>
+            <button
+              class="nav-button right"
+              onclick="scrollRightSection('now-playing')"
+            >
+              &#8250;
+            </button>
+          </div>
+        </section>
+
+        <section class="movie-section">
+          <h2 class="section-title">Popular</h2>
+          <div class="movie-row">
+            <button
+              class="nav-button left"
+              onclick="scrollLeftSection('popular')"
+            >
+              &#8249;
+            </button>
+            <div class="movie-grid" id="popular"></div>
+            <button
+              class="nav-button right"
+              onclick="scrollRightSection('popular')"
+            >
+              &#8250;
+            </button>
+          </div>
+        </section>
+
+        <section class="movie-section">
+          <h2 class="section-title">Top Rated</h2>
+          <div class="movie-row">
+            <button
+              class="nav-button left"
+              onclick="scrollLeftSection('top-rated')"
+            >
+              &#8249;
+            </button>
+            <div class="movie-grid" id="top-rated"></div>
+            <button
+              class="nav-button right"
+              onclick="scrollRightSection('top-rated')"
+            >
+              &#8250;
+            </button>
+          </div>
+        </section>
+        <section class="movie-section">
+          <h2 class="section-title">Upcoming Movies</h2>
+          <div class="movie-row">
+            <button
+              class="nav-button left"
+              onclick="scrollLeftSection('upcoming')"
+            >
+              &#8249;
+            </button>
+            <div class="movie-grid" id="upcoming"></div>
+            <button
+              class="nav-button right"
+              onclick="scrollRightSection('upcoming')"
+            >
+              &#8250;
+            </button>
+          </div>
+        </section>
+      </div>
+      <footer>
+        <div class="footer-container">
+          <div class="footer-grid">
+            <!-- Company Section -->
+            <div>
+              <h3 class="text-lg">Company</h3>
+              <ul class="space-y-2">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Blog</a></li>
+              </ul>
+            </div>
+
+            <!-- Support Section -->
+            <div>
+              <h3 class="text-lg">Support</h3>
+              <ul class="space-y-2">
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Account</a></li>
+              </ul>
+            </div>
+
+            <!-- Legal Section -->
+            <div>
+              <h3 class="text-lg">Legal</h3>
+              <ul class="space-y-2">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Cookie Preferences</a></li>
+                <li><a href="#">Corporate Information</a></li>
+              </ul>
+            </div>
+
+            <!-- Connect with Us Section -->
+            <div>
+              <h3 class="text-lg">Connect with Us</h3>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+              </div>
+              <div class="newsletter">
+                <h4>Subscribe to our newsletter</h4>
+                <form class="footer-flex">
+                  <input type="email" placeholder="Enter your email" />
+                  <button type="submit" class="btn-subscribe">Subscribe</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Bottom Section -->
+          <div class="footer-bottom">
+            <p>&copy; 2023 MovieApp. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+   
+  </body>
+</html>
