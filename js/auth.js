@@ -25,6 +25,17 @@ authForm.addEventListener("submit", (e) => {
   };
 
   if(signIn){
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const existingUser = users.find(
+        (user)=> user.email === email.value  && user.password === password.value
+    );
+
+    if(existingUser){
+        localStorage.setItem("onlineUser", JSON.stringify(existingUser))
+    }else{
+        alert("Invalid credentials")
+        return;
+    }
 
   }else{
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -34,15 +45,17 @@ authForm.addEventListener("submit", (e) => {
     );
     if(existingUser){
       alert(`User ${existingUser.username} already exists`)
-        return
+      return;
     }
-    users.push(user)
+    if (confirmPassword.value !== password.value) {
+        alert("Password did not match!");
+        return;
+      }
+
+  users.push(user)
     localStorage.setItem('users', JSON.stringify(users))
     alert("Registered Successfully!")
     switchAuthForm();
-  }
-  if (confirmPassword.value !== password.value) {
-    alert("Password did not match!");
   }
 
 });
