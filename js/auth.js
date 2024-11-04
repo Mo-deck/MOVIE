@@ -32,7 +32,7 @@ authForm.addEventListener("submit", (e) => {
 
     if(existingUser){
         localStorage.setItem("onlineUser", JSON.stringify(existingUser))
-        window.location.href = '../html/movies.html'
+        window.location.href = '../html/movies.html '
     }else{
         alert("Invalid credentials")
         return;
