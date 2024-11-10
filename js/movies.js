@@ -35,7 +35,7 @@ const api_key = "87794ea630567b2918fba49716980dec"
 
   } catch (error) {
 
-      console.log('error from trending ', error);
+
       
   }
 }
@@ -47,12 +47,35 @@ const api_key = "87794ea630567b2918fba49716980dec"
 
     const data = await response.json()
     
-    return data;
+    return data.results;
     
     
   } catch (error) {
-    console.log('error from fetchMovies', error);
+
     
   }
  }
 
+async function displayMovies() {
+   const playingNow = await fetchMovies("now_playing");
+   const movieGrid = document.getElementById("now-playing");
+
+   
+
+   
+   playingNow.map((movie) => {
+      movieGrid.innerHTML += ` 
+      <div class="movie-card">
+      <img src="${IMAGE_URL}${movie.poster_path}" alt="${movie.title}">
+      <div class="movie-card-overlay">
+        <div class="overlay-buttons">
+          <button class="button" onclick="handlePlay(${movie.id})">▶</button>
+          <button class="button">
+            +
+          </button>
+        </div>
+      </div>
+    </div> 
+      `
+   });
+}
