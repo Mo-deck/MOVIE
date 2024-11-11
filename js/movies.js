@@ -4,7 +4,7 @@ const api_key = "87794ea630567b2918fba49716980dec"
  document.addEventListener("DOMContentLoaded",()=>{
 
   getTrendMovies();
-  displayMovies()
+  randerMovies()
  })
 
  function setHero(data){
@@ -39,6 +39,24 @@ const api_key = "87794ea630567b2918fba49716980dec"
       
   }
 }
+
+const randerMovies = async()=>{
+     const nowPlaying = await fetchMovies('now_playing')
+     const upcoming = await fetchMovies('upcoming')
+     const topRated = await fetchMovies('top_rated')
+     const popular = await fetchMovies('popular')
+
+
+
+     
+
+        displayMovies("now-playing", nowPlaying)
+        displayMovies("popular", popular)
+        displayMovies("upcoming", upcoming)
+        displayMovies("top-rated", topRated)
+     
+}
+
  async function fetchMovies(endPoint){
 
   try {
@@ -48,6 +66,8 @@ const api_key = "87794ea630567b2918fba49716980dec"
     const data = await response.json()
     
     return data.results;
+
+    
     
     
   } catch (error) {
@@ -56,14 +76,13 @@ const api_key = "87794ea630567b2918fba49716980dec"
   }
  }
 
-async function displayMovies() {
-   const playingNow = await fetchMovies("now_playing");
-   const movieGrid = document.getElementById("now-playing");
+async function displayMovies(moviedId,movies) {
+  //  const playingNow = await fetchMovies("now_playing");
+   const movieGrid = document.getElementById(moviedId);
 
    
-
-   
-   playingNow.map((movie) => {
+ 
+   movies.map((movie) => {
       movieGrid.innerHTML += ` 
       <div class="movie-card">
       <img src="${IMAGE_URL}${movie.poster_path}" alt="${movie.title}">
