@@ -98,3 +98,9 @@ async function displayMovies(moviedId,movies) {
       `
    });
 }
+
+function scrollRightSection(sectionId){
+
+  const movieGrid =  document.getElementById(sectionId);
+  movieGrid.scrollLeft += 300;
+}
