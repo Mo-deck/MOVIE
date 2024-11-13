@@ -102,5 +102,10 @@ async function displayMovies(moviedId,movies) {
 function scrollRightSection(sectionId){
 
   const movieGrid =  document.getElementById(sectionId);
-  movieGrid.scrollLeft += 300;
+  movieGrid.scrollBy({left: 300, behavior: "smooth"})
+}
+function scrollLeftSection(sectionId){
+
+  const movieGrid =  document.getElementById(sectionId);
+  movieGrid.scrollBy({ left: -300, behavior: "smooth"})
 }
