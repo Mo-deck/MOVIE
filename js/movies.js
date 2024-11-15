@@ -89,7 +89,7 @@ async function displayMovies(moviedId,movies) {
       <div class="movie-card-overlay">
         <div class="overlay-buttons">
           <button class="button" onclick="handlePlay(${movie.id})">▶</button>
-          <button class="button">
+          <button class="button" moveidId="$${moviedId}" poster_path="${movie.poster_path}" onclick="toggleEvent(this)">
             +
           </button>
         </div>
@@ -108,4 +108,20 @@ function scrollLeftSection(sectionId){
 
   const movieGrid =  document.getElementById(sectionId);
   movieGrid.scrollBy({ left: -300, behavior: "smooth"})
+}
+
+function toggleEvent(button){
+const onlineUser = JSON.parse(localStorage.getItem('onlineUser')) || null;
+
+console.log(onlineUser);
+
+
+    const moviedId = button.getAttribute("moviedId")
+    const poster_path = button.getAttribute("poster_path")
+    const newList ={
+      user: onlineUser.email,
+      lists: [{moviedId, poster_path}]
+    };
+
+    localStorage.setItem('my-list', JSON.stringify(newList))
 }
