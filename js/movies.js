@@ -113,15 +113,32 @@ function scrollLeftSection(sectionId){
 function toggleEvent(button){
 const onlineUser = JSON.parse(localStorage.getItem('onlineUser')) || null;
 
-console.log(onlineUser);
+const myList = JSON.parse(localStorage.getItem("my-list")) ||  {};
 
 
     const moviedId = button.getAttribute("moviedId")
     const poster_path = button.getAttribute("poster_path")
-    const newList ={
-      user: onlineUser.email,
-      lists: [{moviedId, poster_path}]
-    };
+    
 
-    localStorage.setItem('my-list', JSON.stringify(newList))
+    
+    if(Object.keys(myList).length <= 0){
+      myList.user = onlineUser.email;
+      myList.lists = [{moviedId, poster_path}]
+      localStorage.setItem('my-list', JSON.stringify(myList))
+      return
+    }
+
+ const existingOneIndex = myList.lists.findIndex((lists)=> myList.moviedId === moviedId);
+
+
+ console.log(existingOneIndex);
+ 
+ if(existingOneIndex !== -1){
+  myList.lists.splice(existingOneIndex,1);
+  button.textContent = "➕"
+}else{
+  myList.lists.push({moviedId, poster_path})
+  button.textContent = "✔️"
+  
+ }
 }
