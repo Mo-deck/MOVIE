@@ -83,13 +83,14 @@ async function displayMovies(moviedId,movies) {
    
  
    movies.map((movie) => {
+    
       movieGrid.innerHTML += ` 
       <div class="movie-card">
       <img src="${IMAGE_URL}${movie.poster_path}" alt="${movie.title}">
       <div class="movie-card-overlay">
         <div class="overlay-buttons">
           <button class="button" onclick="handlePlay(${movie.id})">▶</button>
-          <button class="button" moveidId="$${moviedId}" poster_path="${movie.poster_path}" onclick="toggleEvent(this)">
+          <button class="button" movieId="${movie.id}" poster_path="${movie.poster_path}" onclick="toggleEvent(this)">
             +
           </button>
         </div>
@@ -110,35 +111,37 @@ function scrollLeftSection(sectionId){
   movieGrid.scrollBy({ left: -300, behavior: "smooth"})
 }
 
-function toggleEvent(button){
-const onlineUser = JSON.parse(localStorage.getItem('onlineUser')) || null;
+function toggleEvent(button) {
+  const onlineUser = JSON.parse(localStorage.getItem("onlineUser")) || null;
+  let allLists = JSON.parse(localStorage.getItem("my-list")) || [];
 
-const myList = JSON.parse(localStorage.getItem("my-list")) ||  {};
+  const movieId = button.getAttribute("movieId");
+  const poster_path = button.getAttribute("poster_path");
 
+  let userIndex = allLists.findIndex((list) => (list.user = onlineUser.email));
 
-    const moviedId = button.getAttribute("moviedId")
-    const poster_path = button.getAttribute("poster_path")
-    
+  if (userIndex === -1) {
+    allLists.push({ user: onlineUser.email, lists: [] });
+    userIndex = allLists.length - 1;
+  }
 
-    
-    if(Object.keys(myList).length <= 0){
-      myList.user = onlineUser.email;
-      myList.lists = [{moviedId, poster_path}]
-      localStorage.setItem('my-list', JSON.stringify(myList))
-      return
-    }
+  const userLists = allLists[userIndex].lists;
 
- const existingOneIndex = myList.lists.findIndex((lists)=> myList.moviedId === moviedId);
-
-
- console.log(existingOneIndex);
- 
- if(existingOneIndex !== -1){
-  myList.lists.splice(existingOneIndex,1);
-  button.textContent = "➕"
-}else{
-  myList.lists.push({moviedId, poster_path})
-  button.textContent = "✔️"
+  console.log(userLists);
   
- }
+
+  const movieIndex = userLists.findIndex((mov) => mov.movieId == movieId);
+
+  console.log(movieIndex);
+  
+
+  if (movieIndex === -1) {
+    userLists.push({ movieId, poster_path });
+    button.textContent = "✔️";
+  } else {
+    userLists.splice(movieIndex, 1);
+    button.textContent = "➕";
+  }
+
+  localStorage.setItem("my-list", JSON.stringify(allLists));
 }
