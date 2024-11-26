@@ -7,6 +7,12 @@ const api_key = "87794ea630567b2918fba49716980dec"
   randerMovies()
  })
 
+ const allLists = JSON.parse(localStorage.getItem(("my-list")))
+
+ const onlineUser = JSON.parse(localStorage.getItem('onlineUser')) || null;
+
+const myList = allLists.find(list => list.user === onlineUser.email); 
+
  function setHero(data){
      const hero_img = document.getElementById("hero-img")
      
@@ -65,10 +71,7 @@ const randerMovies = async()=>{
 
     const data = await response.json()
     
-    return data.results;
-
-    
-    
+    return data.results;   
     
   } catch (error) {
 
@@ -91,7 +94,7 @@ async function displayMovies(moviedId,movies) {
         <div class="overlay-buttons">
           <button class="button" onclick="handlePlay(${movie.id})">▶</button>
           <button class="button" movieId="${movie.id}" poster_path="${movie.poster_path}" onclick="toggleEvent(this)">
-            +
+            ${myList.lists.find(mov =>mov.movieId === movie.id) ?"✔️" : "➕"}
           </button>
         </div>
       </div>
@@ -127,13 +130,7 @@ function toggleEvent(button) {
 
   const userLists = allLists[userIndex].lists;
 
-  console.log(userLists);
-  
-
-  const movieIndex = userLists.findIndex((mov) => mov.movieId == movieId);
-
-  console.log(movieIndex);
-  
+  const movieIndex = userLists.findIndex((mov) => mov.movieId == movieId)
 
   if (movieIndex === -1) {
     userLists.push({ movieId, poster_path });
