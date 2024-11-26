@@ -142,3 +142,8 @@ function toggleEvent(button) {
 
   localStorage.setItem("my-list", JSON.stringify(allLists));
 }
+
+
+function handlePlay(id){
+  window.location.href = '../html/movie-detail?id=${}'
+}
